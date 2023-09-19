@@ -20,17 +20,15 @@ $(function () {
     // grabs value entered in text area
     // how can I future proof this in case the position of textarea changes later?
     let scheduledTask = {
-      task: $taskValue,
-      time: $parentID,
+      task1: {
+        task: $taskValue,
+        time: $parentID,
+      },
     };
     console.log(scheduledTask);
-
+    // consider a different approach to saving to LS
     let stringTask = JSON.stringify(scheduledTask);
     localStorage.setItem("stringTask", stringTask);
-    const getTasks = localStorage.getItem("stringTask");
-    let parsedTask = JSON.parse(getTasks);
-    console.log(parsedTask); // returns an object
-    $task.text("we"); 
   });
 
   // TODO: Add code to apply the past, present, or future class to each time
@@ -41,9 +39,14 @@ $(function () {
   //
   // today.format("HH:mm:ss");
   // TODO: Add code to get any user input that was saved in localStorage and set
+
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
-  //
+  // consider a different approach to saving to LS
+  const getTasks = localStorage.getItem("stringTask");
+  let parsedTask = JSON.parse(getTasks);
+  console.log(parsedTask); // returns an object
+  $task.text("we");
   // TODO: Add code to display the current date in the header of the page.
   const today = dayjs();
   today;
