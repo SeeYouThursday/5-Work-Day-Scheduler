@@ -9,13 +9,28 @@ $(function () {
   // function? How can DOM traversal be used to get the "hour-x" id of the
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
-  const saveBtn = $(".saveBtn");
-  saveBtn.on("click", function () {
-    let parentID = $(this).parent().attr("id");
+  const $saveBtn = $(".saveBtn");
+  $saveBtn.on("click", function (event) {
+    event.stopPropagation();
+    let $parentID = $(this).parent().attr("id");
     // returns the id of the parent (time of day div)
-    let storeEvent = $(this).prev(this).val();
-    console.log(storeEvent);
+    let $task = $(this).prev(this);
+    let $taskValue = $task.val();
+    console.log($taskValue); //works
     // grabs value entered in text area
+    // how can I future proof this in case the position of textarea changes later?
+    let scheduledTask = {
+      task: $taskValue,
+      time: $parentID,
+    };
+    console.log(scheduledTask);
+
+    let stringTask = JSON.stringify(scheduledTask);
+    localStorage.setItem("stringTask", stringTask);
+    const getTasks = localStorage.getItem("stringTask");
+    let parsedTask = JSON.parse(getTasks);
+    console.log(parsedTask); // returns an object
+    $task.text("we"); 
   });
 
   // TODO: Add code to apply the past, present, or future class to each time
