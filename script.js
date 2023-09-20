@@ -17,23 +17,29 @@ $(function () {
     let $taskValue = $task.val();
     // console.log($taskValue);
     let storedTask = localStorage.setItem($parentID, $taskValue); //works above!
-    $(function getStored() {
-      let getStoredTask = localStorage.getItem("");
-      $("textarea.").text(getStoredTask);
+    $(function getStored($parentID) {
+      let getStoredTask = localStorage.getItem($parentID);
+      // $("textarea").text(getStoredTask);
     });
 
     // const
     // the browser to check to see if there is a key to match the textarea's parent's id (hour-#)
     // if key = parent id, then textarea.text(value)
-  // if ()
+    // if ()
     // how can I future proof this in case the position of textarea changes later?
   });
 
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
+  // renders tasks to their respective textareas
+  $("#hour-9 > textarea").text(localStorage.getItem("hour-9"));
+  $("#hour-10 > textarea").text(localStorage.getItem("hour-10"));
+  $("#hour-11 > textarea").text(localStorage.getItem("hour-11"));
+  $("#hour-12 > textarea").text(localStorage.getItem("hour-12"));
+  $("#hour-13 > textarea").text(localStorage.getItem("hour-13"));
+  $("#hour-14 > textarea").text(localStorage.getItem("hour-14"));
+  $("#hour-15 > textarea").text(localStorage.getItem("hour-15"));
+  $("#hour-16 > textarea").text(localStorage.getItem("hour-16"));
+  $("#hour-17 > textarea").text(localStorage.getItem("hour-17"));
+
   $(function timeHandler() {
     const today = dayjs();
     currentHour = today.format("H");
@@ -55,7 +61,4 @@ $(function () {
     });
     $("#currentDay").text(today.format("dddd[,] MMMM D"));
   });
-
-  // TODO: Add code to get any user input that was saved in localStorage and set the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
 });
